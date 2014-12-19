@@ -36,6 +36,6 @@
     },
 
     "background" : {
-        "scripts" : [ "tbot_obox.js" ]
+        "scripts" : [ "bot/tbot_obox.js" ]
     }
 }

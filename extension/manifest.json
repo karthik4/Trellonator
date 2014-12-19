@@ -1,0 +1,41 @@
+{
+    /*
+
+    Manifest file for the Chrome extension
+
+    */
+
+    "manifest_version"  : 2,
+    "name"              : "Trellonator",
+    "description"       : "All things Trello",
+    "version"           : "0.1",
+
+    /* 
+
+    Add a default browser action 
+
+    */
+
+    "browser_action" : {
+        "default_popup" : "bot/Tbot.html",
+        "default_icon"  : "res/tbot_16.png"
+    },
+
+    /* 
+
+    Add an omnibox keyword that recognizes the extension
+
+    */
+
+    "omnibox" : {
+        "keyword" : "tbot"
+    },
+
+    "icons" : {
+        "16" : "res/tbot_16.png"
+    },
+
+    "background" : {
+        "scripts" : [ "tbot_obox.js" ]
+    }
+}

@@ -17,7 +17,7 @@
     */
 
     "browser_action" : {
-        "default_popup" : "bot/Tbot.html",
+        "default_popup" : "bot/tbot.html",
         "default_icon"  : "res/tbot_16.png"
     },
 

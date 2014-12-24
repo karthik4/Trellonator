@@ -39,7 +39,7 @@ function commandParser( command ) {
     var args = tokens.args;
     var opts = tokens.opts;
 
-    var text = "TrelloBot: Command" + command + " Args: " + args + " Opts: " + opts;
+    var text = "TrelloBot: Command: " + command + " Args: " + args + " Opts: " + opts;
 
     console.log( text );
 

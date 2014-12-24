@@ -18,17 +18,32 @@ function tokenizeCommand( command ) {
             args.push( tokenArray[ i ] );
         }
     };
+
+    return {
+        'command' : com,
+        'args' : args,
+        'opts' : opts
+    };
 }
 
 function commandParser( command ) {
     // The command parser function
 
     tokens = tokenizeCommand( command );
-    
+
     if( tokens == null ) {
         throw "is Empty";
     }
 
+    var command = tokens.command;
+    var args = tokens.args;
+    var opts = tokens.opts;
+
+    var text = "TrelloBot: Command" + command + " Args: " + args + " Opts: " + opts;
+
+    console.log( text );
+
+    alert( text );
 
 }
 
@@ -37,7 +52,7 @@ chrome.omnibox.onInputEntered.addListener(
         console.log( 'TrelloBot: ' + text );
         
         // We got a command for the TrelloBot, now parse the command
-
+        commandParser( text );
 
     }
 );

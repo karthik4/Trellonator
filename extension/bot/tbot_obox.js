@@ -5,7 +5,7 @@ function tokenizeCommand( command ) {
     var tokenArray = command.split( " " );
     var args = new Array();
     var opts = new Array();
-
+        
     // The first token is the command
 
     var com = tokenArray[ 0 ];
@@ -43,7 +43,19 @@ function commandParser( command ) {
 
     console.log( text );
 
-    alert( text );
+    // Simple FSMish construct
+
+    switch( command ) {
+        case 'replay':
+            text = 'TrelloBot says: ';
+            text += args;
+
+            alert( text );
+            break;
+        default:
+            alert('Command ' + command + ' is not implemented yet!');
+            break;
+    }
 
 }
 

@@ -8,7 +8,7 @@ document.getElementById('textIp').addEventListener("keydown",function ( e ) {
         var spanNode = document.createElement("span");
         var pNode = document.createElement("p");
         var textNode = document.createTextNode(
-            document.getElementById('textIp').value);
+            'TrelloBot: ' + document.getElementById('textIp').value);
         document.getElementById('textIp').value = null;
         pNode.appendChild( textNode )
         spanNode.appendChild( pNode );

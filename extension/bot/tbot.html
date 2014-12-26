@@ -7,8 +7,10 @@
         min-height: 130px;
         max-height: 150px;
 
-        min-width: 220px;
-        max-width: 250px;
+        min-width: 250px;
+        max-width: 480px;
+
+        position: relative;
     }
 
     input {
@@ -17,12 +19,28 @@
         padding: 2px;
         vertical-align: left;
     }
+
+    #tbotIp {
+        position: absolute;
+        vertical-align: bottom;
+        bottom: 0;
+    }
+
+    #tbotOp {
+        max-height: 80px;
+        max-width: 250px;
+        overflow: auto;
+    }
     </style>
 </head>
 <body>
     <div id="tbotOp">
-    </div> 
-    <span>Ok TrelloBot... <input type="text" id="textIp"></span>
+    <!-- Placeholder for the output text when the bot responds... -->
+    </div>
+
+    <span id="tbotIp">Ok TrelloBot... 
+        <input type="text" id="textIp">
+    </span>
 <script type="text/javascript" src="tbot_main.js"></script>
 </body>
 </html>

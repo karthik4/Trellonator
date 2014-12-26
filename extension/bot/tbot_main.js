@@ -9,10 +9,7 @@ document.getElementById('textIp').addEventListener("keydown",function ( e ) {
         var pNode = document.createElement("p");
         var textNode = document.createTextNode(
             document.getElementById('textIp').value);
-<<<<<<< HEAD
-=======
         document.getElementById('textIp').value = null;
->>>>>>> db57e6519713e5f2423a504d654104477b843792
         pNode.appendChild( textNode )
         spanNode.appendChild( pNode );
         divNode.appendChild( spanNode );

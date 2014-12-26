@@ -26,6 +26,51 @@ function tokenizeCommand( command ) {
     };
 }
 
+function checkCookie (name) {
+
+    var ck = document.cookie;
+
+    // Check if tbot exists in the series of cookies
+    var begin = ck.indexOf( name + '=' );
+    
+    if( begin == -1 ) {
+        // doesn't exist...
+        return null;
+    }
+
+    // Exists... so, try extracting the value
+    var end = ck.indexOf( ';', begin );
+
+    if( end == -1 ) {
+        end = ck.length;
+    }
+
+    return ck.substring( begin, end).split( '=' )[1];
+}
+
+function doAuth( key ) {
+    var token = null;
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open('GET','https://trello.com/1/authorize?callback_method=postMessage&return_url=origin&scope=read&expiration=1hour&name=TrelloBot&key=' + key, false );
+
+    xhr.send(null);
+
+    var resp = xhr.responseText;
+    console.log( 'XHR respone: ' + resp );
+    alert( resp );
+
+    var dc = document.cookie;
+    
+    var d = new Date();
+    d.setTime(d.getTime() + 3600*1000 );
+
+    var exp = 'expires=' + d.toUTCString();
+    document.cookie = 'tbot=' + resp + '; ' + exp;
+    return resp;
+}
+
 function commandParser( command ) {
     // The command parser function
 
@@ -41,6 +86,8 @@ function commandParser( command ) {
 
     var text = "TrelloBot: Command: " + command + " Args: " + args + " Opts: " + opts;
 
+    var key = '31bdd2e5ee48bb361fceef935c5698af';
+
     console.log( text );
 
     // Simple FSMish construct
@@ -52,6 +99,22 @@ function commandParser( command ) {
 
             alert( text );
             break;
+        case 'board':
+            // various board commands... default being navigate to that board
+            switch( opts ) {
+                case default:
+                    // Just display the list of boards that are by the user
+                    var xhr = new XMLHttpRequest();
+
+                    // check if there is a cookie that contains the OAuth token
+
+                    authToken = checkCookie( 'tbot' );
+                    if( authToken == null ) {
+                        authToken = doAuthProc( key )
+                    } else {
+                        // showAllBoards( key, authToken );
+                    }
+            }
         default:
             alert('Command ' + command + ' is not implemented yet!');
             break;

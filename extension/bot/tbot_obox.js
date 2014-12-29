@@ -63,12 +63,12 @@ function doAuthProc( key ) {
     var signature_begin = resp.substring('<form');
     var signature_end = resp.substring('/form>');
     
-    var newFrame = document.createElement("iframe");
+ /*   var newFrame = document.createElement("iframe");
     document.body.appendChild( newFrame );
     newFrame.contentWindow.document.open( );
     newFrame.contentWindow.document.write( resp );
     newFrame.contentWindow.document.close();
-
+*/
 
     console.log( signature );
 

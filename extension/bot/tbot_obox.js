@@ -48,7 +48,7 @@ function checkCookie (name) {
     return ck.substring( begin, end).split( '=' )[1];
 }
 
-function doAuth( key ) {
+function doAuthProc( key ) {
     var token = null;
 
     var xhr = new XMLHttpRequest();
@@ -58,16 +58,23 @@ function doAuth( key ) {
     xhr.send(null);
 
     var resp = xhr.responseText;
-    console.log( 'XHR respone: ' + resp );
-    alert( resp );
+    console.log( resp );
 
-    var dc = document.cookie;
+    var signature_begin = resp.substring('<form');
+    var signature_end = resp.substring('/form>');
     
-    var d = new Date();
-    d.setTime(d.getTime() + 3600*1000 );
+    var newFrame = document.createElement("iframe");
+    document.body.appendChild( newFrame );
+    newFrame.contentWindow.document.open( );
+    newFrame.contentWindow.document.write( resp );
+    newFrame.contentWindow.document.close();
 
-    var exp = 'expires=' + d.toUTCString();
-    document.cookie = 'tbot=' + resp + '; ' + exp;
+
+    console.log( signature );
+
+    resp = signature;
+
+    // Response is a html.
     return resp;
 }
 
@@ -102,19 +109,24 @@ function commandParser( command ) {
         case 'board':
             // various board commands... default being navigate to that board
             switch( opts ) {
-                case default:
+                case '-sample':
+                default:
                     // Just display the list of boards that are by the user
                     var xhr = new XMLHttpRequest();
 
                     // check if there is a cookie that contains the OAuth token
 
-                    authToken = checkCookie( 'tbot' );
+                    authToken = null;//checkCookie( 'tbot' );
+                    console.log( 'authToken is ' + authToken )
+                    alert( authToken );
                     if( authToken == null ) {
                         authToken = doAuthProc( key )
                     } else {
                         // showAllBoards( key, authToken );
                     }
             }
+            break;
+
         default:
             alert('Command ' + command + ' is not implemented yet!');
             break;

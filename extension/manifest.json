@@ -37,5 +37,15 @@
 
     "background" : {
         "scripts" : [ "bot/tbot_obox.js" ]
-    }
+    },
+
+    /*
+
+    Add CORS permission for http://trello.com
+
+    */
+
+    "permissions" : [
+        "https://trello.com/*"
+    ]
 }

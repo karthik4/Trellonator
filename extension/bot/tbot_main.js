@@ -108,14 +108,11 @@ function commandParser( command ) {
 
     switch( command ) {
         case 'replay':
-            text = 'TrelloBot says: ';
-            text += args;
-
-            alert( text );
+            text = args;
             var spanNode = document.createElement("span");
             var pNode = document.createElement("p");
             var textNode = document.createTextNode(
-                'TrelloBot: ' + command );
+                'TrelloBot: ' + text );
             document.getElementById('textIp').value = null;
             pNode.appendChild( textNode );
             spanNode.appendChild( pNode );

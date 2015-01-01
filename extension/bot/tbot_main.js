@@ -70,7 +70,9 @@ function doAuthProc( key ) {
     var signature_end = resp.substring('/form>');
     
     var newFrame = document.createElement("iframe");
-    document.body.appendChild( newFrame );
+    newFrame.className = "auth";
+    var authDiv = document.getElementById("authFrame");
+    authDiv.appendChild( newFrame );
     newFrame.contentWindow.document.open( );
     newFrame.contentWindow.document.write( resp );
     newFrame.contentWindow.document.close();
@@ -128,9 +130,12 @@ function commandParser( command ) {
 
                     // check if there is a cookie that contains the OAuth token
 
-                    authToken = null;//checkCookie( 'tbot' );
+                    // Temp auth setting
+                    authToken = null;
+
+                    //checkCookie( 'tbot' );
                     console.log( 'authToken is ' + authToken )
-                    alert( authToken );
+                    // alert( authToken );
                     if( authToken == null ) {
                         authToken = doAuthProc( key )
                     } else {
